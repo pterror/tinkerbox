@@ -1,0 +1,27 @@
+{
+	"files": [],
+	"compilerOptions": {
+		"rootDir": ".",
+		"lib": ["ESNext"],
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleDetection": "force",
+		"jsx": "react-jsx",
+		"allowJs": true,
+		"composite": true,
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"verbatimModuleSyntax": true,
+		"noEmit": false,
+		"emitDeclarationOnly": true,
+		"declarationMap": true,
+		/* Linting */
+		"strict": true,
+		"skipLibCheck": true,
+		"noFallthroughCasesInSwitch": true,
+		"exactOptionalPropertyTypes": true,
+		"noUncheckedIndexedAccess": true
+	},
+	"references": [{ "path": "packages/api" }, { "path": "packages/app" }]
+}
