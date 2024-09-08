@@ -39,12 +39,14 @@ const verticalCenter = (element: Element) => {
 
 const onDrag = (event: DragEvent) => {
 	if (event.clientY <= 0 || !dragInfo.value) return;
+	if (event.clientX === 0 && event.clientY === 0) return;
 	const dragIndex = dragInfo.value.index;
 	updateDragPosition(event);
 	const nextSibling = dragInfo.value.element.nextElementSibling;
 	if (nextSibling && event.clientY >= verticalCenter(nextSibling)) {
 		const entries = Object.entries(model.value);
 		const draggedItem = entries[dragIndex];
+		if (!draggedItem) return;
 		entries.splice(dragIndex, 1);
 		entries.splice(dragIndex + 1, 0, draggedItem);
 		model.value = Object.fromEntries(entries);
@@ -55,6 +57,7 @@ const onDrag = (event: DragEvent) => {
 	if (prevSibling && event.clientY <= verticalCenter(prevSibling)) {
 		const entries = Object.entries(model.value);
 		const draggedItem = entries[dragIndex];
+		if (!draggedItem) return;
 		entries.splice(dragIndex, 1);
 		entries.splice(dragIndex - 1, 0, draggedItem);
 		model.value = Object.fromEntries(entries);
@@ -144,7 +147,7 @@ export const defaultValue = (): Type => {
 				:title="
 					newKey !== undefined && newKey in model
 						? 'this struct already has a key named \'' + newKey + '\''
-						: undefined
+						: ''
 				"
 				@click="newKey && (model[newKey] = null)"
 			>

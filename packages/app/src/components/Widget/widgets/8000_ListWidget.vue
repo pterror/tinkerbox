@@ -30,6 +30,7 @@ const verticalCenter = (element: Element) => {
 
 const onDrag = (event: DragEvent) => {
 	if (event.clientY < 0 || !dragInfo.value) return;
+	if (event.clientX === 0 && event.clientY === 0) return;
 	const dragIndex = dragInfo.value.index;
 	updateDragPosition(event);
 	const nextSibling = dragInfo.value.element.nextElementSibling;
